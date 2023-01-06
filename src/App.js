@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { Navigation } from './components/Navigation';
 import { PokemonCard } from './components/PokemonCard';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const LIMIT = 5;
 const pokeApi = `https://pokeapi.co/api/v2/pokemon/?limit=${LIMIT}`;

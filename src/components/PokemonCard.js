@@ -4,35 +4,39 @@ import Card from 'react-bootstrap/Card';
 function PokemonCard({ url, name }) {
   const [cardData, setCardData] = useState([]);
   
-  useEffect(() => {
-    const fetchPokeApiData = async () => {
-      // fetch pokemon card data
+  async function fetchPokeCard(){
+    try{
       const cardDatas = await fetch(url)
       // return data as json
       const cardDataToJson = await cardDatas.json();
-    
       // set pokemon data array
       setCardData(cardDataToJson); 
 
-      // Seeing what is in cardData
-      console.log(cardData.abilities[0]);
-      // console.log(cardDataToJson.sprites.front_default)
+    } catch(err){
+      console.log("Unable to fetch Poke Card", err)
     }
-    // call the fetch function
-    fetchPokeApiData();
-  }, []);
+  }
 
+  useEffect(() => {
+    fetchPokeCard();
+    }, []);
+
+  // console.log(cardData?.sprites?.front_default);
+  // console.log(cardData?.abilities[0].ability.name);
+
+
+  const getAbility = cardData?.abilities?.map(pokeAbility => 
+      <ul><li>{pokeAbility.ability.name}</li></ul> 
+    )
 
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" />
+      <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-          {cardData.height}
+        <Card.Text> Abilities:
+          {getAbility}
         </Card.Text>
       </Card.Body>
     </Card>
