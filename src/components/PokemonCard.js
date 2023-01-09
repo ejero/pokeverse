@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function PokemonCard({ url, name }) {
   const [cardData, setCardData] = useState([]);
@@ -23,22 +26,14 @@ function PokemonCard({ url, name }) {
   // console.log(cardData?.sprites?.front_default);
   // console.log(cardData?.abilities[0].ability.name);
 
-
   const getAbility = cardData?.abilities?.map(pokeAbility => 
       <ul><li>{pokeAbility.ability.name}</li></ul> 
     )
 
-
-
-  //   // Filter cards based on searchTerm
-  // if (!name.toLowerCase().includes(searchTerm.toLowerCase())) {
-  //   return null;
-  // }
-
   return (
     <div>
-        { 
-        <Card style={{ width: '18rem' }}>
+        <div className="flex">
+          <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
         <Card.Body>
             <Card.Title>{name}</Card.Title>
@@ -47,8 +42,7 @@ function PokemonCard({ url, name }) {
           </Card.Text>
         </Card.Body>
         </Card>
-      }
-
+        </div>
     </div>
   );
 }

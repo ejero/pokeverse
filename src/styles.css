@@ -6,3 +6,11 @@ body {
 h1 {
   font-weight: 800 !important;
 }
+
+
+.flex{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+}
