@@ -7,10 +7,25 @@ h1 {
   font-weight: 800 !important;
 }
 
+body{
+  background-color: rgb(224, 250, 231);
+}
+
+.grid-container {
+  display: inline-grid;
+  grid-auto-flow: row dense;
+  margin: 20px;
+}
+
+.card {
+  background-color: #baf0f4;
+  border: 2px solid #34a47d;
+  box-shadow: 0 0 5px #000000;
+  font-size: 18px;
+  border-radius: 10px;
+}
 
 .flex{
   display: flex;
   align-items: center;
-  flex-direction: row;
-  gap: 10px;
 }

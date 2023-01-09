@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { CardGroup } from 'react-bootstrap';
+import { CardDeck } from 'react-bootstrap';
 
 function PokemonCard({ url, name }) {
   const [cardData, setCardData] = useState([]);
@@ -31,19 +30,19 @@ function PokemonCard({ url, name }) {
     )
 
   return (
-    <div>
+      <div className="grid-container">
         <div className="flex">
-          <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
-        <Card.Body>
-            <Card.Title>{name}</Card.Title>
+          <Card className="card" style={{ width: '18rem'}}>
+          <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
+          <Card.Body>
+          <Card.Title>{name}</Card.Title>
           <Card.Text> Abilities:
             {getAbility}
           </Card.Text>
-        </Card.Body>
+          </Card.Body>
         </Card>
-        </div>
-    </div>
+        </div> 
+      </div>
   );
 }
 
