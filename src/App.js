@@ -30,7 +30,7 @@ function App() {
   }, []);
 
    // Event handler for input change
-   const handleChange = event => {
+  const handleChange = event => {
     setQuery(event.target.value);
   };
     
@@ -38,7 +38,7 @@ function App() {
   return (
     <div data-testid="app">
       <Navigation/>
-      <InputGroup className="mb-3" onChange={handleChange} >
+      <InputGroup className="mb-3">
         <InputGroup.Text>Search</InputGroup.Text>
         <Form.Control aria-label="Search" onChange={handleChange} />
       </InputGroup>
