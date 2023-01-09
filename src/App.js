@@ -12,7 +12,8 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [query, setQuery] = useState('');
 
-  console.log(pokemonList.filter(pokemonList => pokemonList.name.includes(query)));
+  // Adding search query to console.log to check
+  // console.log(pokemonList.filter(pokemonList => pokemonList.name.includes(query)));
 
   useEffect(() => {
     const fetchPokeApiData = async () => {
@@ -22,30 +23,30 @@ function App() {
       const pokeDataToJson = await pokeData.json();
       // set pokemon data array
       setPokemonList(pokeDataToJson.results);
-
-      // testing to see what is fetched and data ype
-      console.log(pokemonList);
-      console.log(typeof pokemonList);
     }
 
     // call the fetch function
     fetchPokeApiData();
   }, []);
 
-// Map pokemon card data
-  const getPokeData = pokemonList.map(p => (<>
-    <PokemonCard url={p.url} name={p.name}/>
-  </>))
-
+   // Event handler for input change
+   const handleChange = event => {
+    setQuery(event.target.value);
+  };
+    
 
   return (
     <div data-testid="app">
       <Navigation/>
-      <InputGroup className="mb-3" onChange={(e) => setQuery(e.target.value)} >
+      <InputGroup className="mb-3" onChange={handleChange} >
         <InputGroup.Text>Search</InputGroup.Text>
-        <Form.Control aria-label="Search"/>
+        <Form.Control aria-label="Search" onChange={handleChange} />
       </InputGroup>
-      <div>{getPokeData}</div>
+      {pokemonList
+        .filter(card => card.name.toLowerCase().includes(query.toLowerCase()))
+        .map(card => (
+          <PokemonCard key={card.name} url={card.url} name={card.name} />
+        ))}
     </div>
   );
 }

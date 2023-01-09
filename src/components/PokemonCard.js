@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card';
 
 function PokemonCard({ url, name }) {
   const [cardData, setCardData] = useState([]);
-  
   async function fetchPokeCard(){
     try{
       const cardDatas = await fetch(url)
@@ -29,17 +28,26 @@ function PokemonCard({ url, name }) {
       <ul><li>{pokeAbility.ability.name}</li></ul> 
     )
 
+
+
+  //   // Filter cards based on searchTerm
+  // if (!name.toLowerCase().includes(searchTerm.toLowerCase())) {
+  //   return null;
+  // }
+
   return (
     <div>
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
-      <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Text> Abilities:
-          {getAbility}
-        </Card.Text>
-      </Card.Body>
-    </Card>
+        { 
+        <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src={cardData?.sprites?.front_default}/>
+        <Card.Body>
+            <Card.Title>{name}</Card.Title>
+          <Card.Text> Abilities:
+            {getAbility}
+          </Card.Text>
+        </Card.Body>
+        </Card>
+      }
 
     </div>
   );
